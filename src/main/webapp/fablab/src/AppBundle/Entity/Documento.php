@@ -43,8 +43,7 @@ class Documento
     private $descripcion;
 
      /**
-     * @ORM\ManyToMany(targetEntity="Proyecto", inversedBy="documentos")
-     * @ORM\JoinTable(name="documento_proyecto")
+     * @ORM\ManyToMany(targetEntity="Proyecto", mappedBy="documentos")
      */
     private $proyectos;
 
