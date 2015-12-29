@@ -23,10 +23,15 @@ security:
             security: false
 
         main:
+            anonymous: ~
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                csrf_token_generator: security.csrf.token_manager
            # pattern:    ^/
            # http_basic: ~
-           # provider: our_db_provider
-            anonymous: ~
+            provider: our_db_provider
+           # anonymous: ~
             # activate different ways to authenticate
 
             # http_basic: ~
