@@ -4,7 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -25,21 +26,28 @@ class User implements UserInterface, \Serializable
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 4096)
+     */
+    private $plainPassword;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=64)
      */
     private $password;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
@@ -53,28 +61,28 @@ class User implements UserInterface, \Serializable
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="rut", type="bigint", unique=true)
      */
     private $rut;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="rutVerificador", type="string", length=1)
      */
     private $rutVerificador;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="telefono", type="integer")
      */
     private $telefono;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="fechaInicio", type="datetime")
      */
     private $fechaInicio;
@@ -358,5 +366,15 @@ class User implements UserInterface, \Serializable
     public function removeRole(\AppBundle\Entity\Role $role)
     {
         $this->roles->removeElement($role);
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
     }
 }
