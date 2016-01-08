@@ -47,9 +47,15 @@ class Documento
      */
     private $proyectos;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Proyecto", mappedBy="documentos")
+     */
+    private $maquinas;
+
     public function __construct()
     {
         $this->proyectos = new ArrayCollection();
+        $this->maquinas = new ArrayCollection();
     }
 
     /**
@@ -166,5 +172,39 @@ class Documento
     public function getProyectos()
     {
         return $this->proyectos;
+    }
+
+    /**
+     * Add maquina
+     *
+     * @param \AppBundle\Entity\Proyecto $maquina
+     *
+     * @return Documento
+     */
+    public function addMaquina(\AppBundle\Entity\Proyecto $maquina)
+    {
+        $this->maquinas[] = $maquina;
+
+        return $this;
+    }
+
+    /**
+     * Remove maquina
+     *
+     * @param \AppBundle\Entity\Proyecto $maquina
+     */
+    public function removeMaquina(\AppBundle\Entity\Proyecto $maquina)
+    {
+        $this->maquinas->removeElement($maquina);
+    }
+
+    /**
+     * Get maquinas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMaquinas()
+    {
+        return $this->maquinas;
     }
 }

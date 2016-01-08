@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ImagenMaquina list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imagen</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imagenMaquina in imagenMaquinas %}
+            <tr>
+                <td><a href="{{ path('imagenmaquina_show', { 'id': imagenMaquina.id }) }}">{{ imagenMaquina.id }}</a></td>
+                <td>{{ imagenMaquina.imagen }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imagenmaquina_show', { 'id': imagenMaquina.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('imagenmaquina_edit', { 'id': imagenMaquina.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imagenmaquina_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
