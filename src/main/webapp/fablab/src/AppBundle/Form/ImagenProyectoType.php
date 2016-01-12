@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ImagenMaquinaType extends AbstractType
+class ImagenProyectoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,7 +16,8 @@ class ImagenMaquinaType extends AbstractType
     {
         $builder
             ->add('imagen')
-          //  ->add('maquina')
+            ->add('etiqueta')
+            ->add('proyecto')
         ;
     }
     
@@ -26,7 +27,7 @@ class ImagenMaquinaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ImagenMaquina'
+            'data_class' => 'AppBundle\Entity\ImagenProyecto'
         ));
     }
 }

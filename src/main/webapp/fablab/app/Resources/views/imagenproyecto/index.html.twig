@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ImagenProyecto list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imagen</th>
+                <th>Etiqueta</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imagenProyecto in imagenProyectos %}
+            <tr>
+                <td><a href="{{ path('imagenproyecto_show', { 'id': imagenProyecto.id }) }}">{{ imagenProyecto.id }}</a></td>
+                <td>{{ imagenProyecto.imagen }}</td>
+                <td>{{ imagenProyecto.etiqueta }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('imagenproyecto_show', { 'id': imagenProyecto.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('imagenproyecto_edit', { 'id': imagenProyecto.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('imagenproyecto_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

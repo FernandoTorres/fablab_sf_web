@@ -48,7 +48,7 @@ class Documento
     private $proyectos;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Proyecto", mappedBy="documentos")
+     * @ORM\ManyToMany(targetEntity="Maquina", mappedBy="documentos")
      */
     private $maquinas;
 
